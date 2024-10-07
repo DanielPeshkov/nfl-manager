@@ -2,7 +2,7 @@ drop table if exists team;
 create table team (
 	`id` int not null auto_increment primary key,
 	`code` char(3) not null,
-	`team` varchar(45) not null,
+	`name` varchar(45) not null,
 	`coach` varchar(45) not null,
 	`off_coord` varchar(45) not null,
 	`def_coord` varchar(45) not null,
@@ -11,7 +11,7 @@ create table team (
 	`gm` varchar(45) not null
 );
 
-insert into team(code, team, coach, off_coord, def_coord, stadium, owner, gm) values
+insert into team(code, name, coach, off_coord, def_coord, stadium, owner, gm) values
 	("crd", "Arizona Cardinals", "Jonathan Gannon", "Drew Petzing", "Nick Rallis", "State Farm Stadium", "Michael Bidwill", "Monti Ossenfort"),
 	("atl", "Atlanta Falcons", "Raheem Morris", "Zac Robinson", "Jimmy Lake", "Mercedes-Benz Stadium", "Arthur Blank", "Terry Fontenot"),
 	("rav", "Baltimore Ravens", "John Harbaugh", "Todd Monken", "Zach Orr", "M&T Bank Stadium", "Steve Bisciotti", "Eric DeCosta"),
