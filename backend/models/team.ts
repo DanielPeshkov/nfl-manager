@@ -4,30 +4,30 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 export class Team {
 
     @PrimaryGeneratedColumn()
-    id: number
+    id: number = 0;
 
     @Column()
-    code: string
+    code: string = '';
 
     @Column()
-    name: string
+    name: string = '';
 
     @Column()
-    coach: string
+    coach: string = '';
 
     @Column()
-    off_coord: string
+    off_coord: string = '';
 
     @Column()
-    def_coord: string
+    def_coord: string = '';
 
     @Column()
-    stadium: string
+    stadium: string = '';
 
     @Column()
-    owner: string
+    owner: string = '';
 
     @Column()
-    gm: string
+    gm: string = '';
 
 }

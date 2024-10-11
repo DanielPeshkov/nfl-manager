@@ -1,9 +1,9 @@
-import * as express from "express"
+import express from "express"
 import { myDataSource } from "./app-data-source"
 import * as http from 'http'
 import { Server } from "socket.io"
 
-const port = process.env.PORT || 8080;
+const port = process.env['PORT'] || 8080;
 const teamEvents = require('./event-handlers/team-events');
 const playerEvents = require('./event-handlers/player-events')
 

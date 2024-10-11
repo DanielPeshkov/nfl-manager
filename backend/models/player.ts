@@ -4,60 +4,60 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 export class Player {
 
     @PrimaryGeneratedColumn()
-    id: number
+    id: number = 0;
 
     @Column()
-    code: string
+    code: string = '';
 
     @Column()
-    team: string
+    team: string = '';
 
     @Column()
-    player: string
+    player: string = '';
 
     @Column()
-    num: number
+    num: number = 0;
 
     @Column()
-    pos: string
+    pos: string = '';
 
     @Column()
-    age: number
+    age: number = 0;
 
     @Column()
-    years: number
+    years: number = 0;
 
     @Column()
-    games_played: number
+    games_played: number = 0;
 
     @Column()
-    games_started: number
+    games_started: number = 0;
 
     @Column()
-    status: string
+    status: string = '';
 
     @Column()
-    height: number
+    height: number = 0;
 
     @Column()
-    weight: number
+    weight: number = 0;
 
     @Column()
-    birth: string
+    birth: string = '';
 
     @Column()
-    college: string
+    college: string = '';
 
     @Column()
-    draft_team: string
+    draft_team: string = '';
 
     @Column()
-    draft_year: number
+    draft_year: number = 0;
 
     @Column()
-    round: number
+    round: number = 0;
 
     @Column()
-    pick: number
+    pick: number = 0;
 
 }
