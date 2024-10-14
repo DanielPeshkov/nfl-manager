@@ -21,7 +21,12 @@ myDataSource
 const app = express();
 app.use(express.json());
 const server = http.createServer(app); //
-const io = new Server(server); // 
+const io = new Server(server, {
+    cors: {
+        origin: 'http://localhost:4200',
+        methods: ["GET"],
+    }
+}); // 
 
 io.on('connection', (socket) => {
     console.log('Client connected');

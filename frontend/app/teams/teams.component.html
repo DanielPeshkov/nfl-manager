@@ -1,0 +1,37 @@
+<main>
+    <h1>Teams</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Coach</th>
+                <th>Offensive Coordinator</th>
+                <th>Defensive Coordinator</th>
+                <th>Stadium</th>
+                <th>Owner</th>
+                <th>General Manager</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (team of teams; track $index) {
+                <tr>
+                    <td>{{team.id}}</td>
+                    <td>{{team.code}}</td>
+                    <td>{{team.name}}</td>
+                    <td>{{team.coach}}</td>
+                    <td>{{team.off_coord}}</td>
+                    <td>{{team.def_coord}}</td>
+                    <td>{{team.stadium}}</td>
+                    <td>{{team.owner}}</td>
+                    <td>{{team.gm}}</td>
+                </tr>
+            }
+            <button type="button" (click)="sendMessage()">Emit</button>
+
+        </tbody>
+    </table>
+</main>
+
