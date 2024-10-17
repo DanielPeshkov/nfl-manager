@@ -1,0 +1,122 @@
+<main>
+    <div class="sidebar-wrapper">
+        <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="content">
+
+
+        <div class="form-container">
+            <h1>{{player.player}}</h1>
+            <form>
+                <div class="form-element">
+                    <label>ID</label><br>
+                    <input type="text" placeholder="ID" [formControl]="idField">
+                </div>
+    
+                <div class="form-element">
+                    <label>Team Code</label><br>
+                    <input type="text" placeholder="Code" [formControl]="codeField">
+                </div>
+    
+                <div class="form-element">
+                    <label>Team Name</label><br>
+                    <select [formControl]="teamField" (change)="changeCode()">
+                    @for (team of teamMap; track $index;) {
+                        <option value="{{team[0]}}">{{team[0]}}</option>
+                    }
+                    </select>
+                </div>
+    
+                <div class="form-element">
+                    <label>Player Name</label><br>
+                    <input type="text" placeholder="Name" [formControl]="nameField">
+                </div>
+    
+                <div class="form-element">
+                    <label>Number</label><br>
+                    <input type="number" placeholder="Number" [formControl]="numField">
+                </div>
+
+                <div class="form-element">
+                    <label>Position</label><br>
+                    <input type="text" placeholder="Position" [formControl]="posField">
+                </div>
+    
+                <div class="form-element">
+                    <label>Age</label><br>
+                    <input type="number" placeholder="Age" [formControl]="ageField">
+                </div>
+
+                <div class="form-element">
+                    <label>Years Played</label><br>
+                    <input type="number" placeholder="Years" [formControl]="yearField">
+                </div>
+
+                <div class="form-element">
+                    <label>Games Played</label><br>
+                    <input type="number" placeholder="Games" [formControl]="gpField">
+                </div>
+
+                <div class="form-element">
+                    <label>Games Started</label><br>
+                    <input type="number" placeholder="Games" [formControl]="gsField">
+                </div>
+                
+                <div class="form-element">
+                    <label>Status</label><br>
+                    <input type="text" placeholder="Stat" [formControl]="statField">
+                </div>
+
+                <div class="form-element">
+                    <label>Height</label><br>
+                    <input type="number" placeholder="Height" [formControl]="hField">
+                </div>
+
+                <div class="form-element">
+                    <label>Weight</label><br>
+                    <input type="number" placeholder="Weight" [formControl]="wField">
+                </div>
+
+                <div class="form-element">
+                    <label>Birth Date</label><br>
+                    <input type="text" placeholder="Date" [formControl]="birthField">
+                </div>
+
+                <div class="form-element">
+                    <label>College</label><br>
+                    <input type="text" placeholder="College" [formControl]="colField">
+                </div>
+
+                <div class="form-element">
+                    <label>Draft Team</label><br>
+                    <input type="text" placeholder="Team" [formControl]="dtField">
+                </div>
+
+                <div class="form-element">
+                    <label>Draft Year</label><br>
+                    <input type="number" placeholder="Year" [formControl]="dyField">
+                </div>
+
+                <div class="form-element">
+                    <label>Draft Round</label><br>
+                    <input type="number" placeholder="Round" [formControl]="rField">
+                </div>
+
+                <div class="form-element">
+                    <label>Draft Pick</label><br>
+                    <input type="number" placeholder="Pick" [formControl]="pField">
+                </div>
+            </form>
+        </div>
+        <div class="buttons">
+            <button type="button" (click)="submitTeam()">Save Changes</button>
+            <button type="button" (click)="cancel()">Cancel</button>
+        </div>
+        <div class="buttons">
+            <button type="button" (click)="delete()">Delete</button>
+        </div>
+    </div>
+</main>
+
+

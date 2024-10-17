@@ -1,0 +1,40 @@
+<main>    
+    <div class="sidebar-wrapper">
+        <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="header">
+        <h1>Players</h1>
+    </div>
+
+    <div class="content">
+
+        <table id="playerTable" class="table table-hover table-striped" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>ID<br><input type="text" size="1" placeholder="ID" [formControl]="idFilter" (input)="filterPlayer()"></th>
+                    <th>Code<br><input type="text" size="1" placeholder="Code" [formControl]="codeFilter" (input)="filterPlayer()"></th>
+                    <th>Team<br><input type="text" size="8" placeholder="Team" [formControl]="teamFilter" (input)="filterPlayer()"></th>
+                    <th>Player<br><input type="text" size="12" placeholder="Player" [formControl]="nameFilter" (input)="filterPlayer()"></th>
+                    <th>Number<br><input type="text" size="1" placeholder="Num" [formControl]="numFilter" (input)="filterPlayer()"></th>
+                    <th>Position<br><input type="text" size="1" placeholder="Pos" [formControl]="posFilter" (input)="filterPlayer()"></th>
+                    <th>Age<br><input type="text" size="1" placeholder="Age" [formControl]="ageFilter" (input)="filterPlayer()"></th>
+                </tr>
+            </thead>
+            <tbody id="tbody1">
+                @for (player of tablePlayers; track $index) {
+                    <tr class="clickable" (click)="rowClick(player)">
+                        <td>{{player.id}}</td>
+                        <td>{{player.code}}</td>
+                        <td>{{player.team}}</td>
+                        <td>{{player.player}}</td>
+                        <td>{{player.num}}</td>
+                        <td>{{player.pos}}</td>
+                        <td>{{player.age}}</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</main>
+

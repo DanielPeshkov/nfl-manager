@@ -7,7 +7,7 @@ export const myDataSource = new DataSource({
     username: process.env['DB_USER'],
     password: `${process.env['DB_PASSWORD']}`,
     database: process.env['DB_DATABASE'],
-    entities: ["backend/models/*.js", "build/models/*.js"],
+    entities: ["backend/models/*.js", "build/backend/models/*.js"],
     logging: false,
     synchronize: false,
 });

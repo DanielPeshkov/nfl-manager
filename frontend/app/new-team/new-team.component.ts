@@ -1,22 +1,21 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Team } from '../models/team';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Team } from '../models/team';
+import { Router } from '@angular/router';
 import { SocketService } from '../services/socket.service';
 
 @Component({
-  selector: 'app-team',
+  selector: 'app-new-team',
   standalone: true,
   imports: [SidebarComponent, ReactiveFormsModule],
-  templateUrl: './team.component.html',
-  styleUrl: './team.component.css'
+  templateUrl: './new-team.component.html',
+  styleUrl: './new-team.component.css'
 })
-export class TeamComponent {
+export class NewTeamComponent {
   teams: Team[] = [];
   teamMap!: Map<string, string>;
   @Input() team: Team = new Team(0, '', '', '', '', '', '', '', '');
-  idField = new FormControl('idField');
   codeField = new FormControl('codeField');
   teamField = new FormControl('teamField');
   coachField = new FormControl('coachField');
@@ -31,17 +30,14 @@ export class TeamComponent {
     this.checkForTeam();
     this.team = JSON.parse(localStorage.getItem('team')!);
     localStorage.setItem('teamText', this.team.name);
-    this.idField.setValue(this.team.id.toString());
-    this.idField.disable();
-    this.codeField.setValue(this.team.code);
-    this.codeField.disable();
-    this.teamField.setValue(this.team.name);
-    this.coachField.setValue(this.team.coach);
-    this.offField.setValue(this.team.off_coord);
-    this.defField.setValue(this.team.def_coord);
-    this.stadField.setValue(this.team.stadium);
-    this.ownField.setValue(this.team.owner);
-    this.gmField.setValue(this.team.gm);
+    this.codeField.setValue("");
+    this.teamField.setValue("");
+    this.coachField.setValue("");
+    this.offField.setValue("");
+    this.defField.setValue('');
+    this.stadField.setValue('');
+    this.ownField.setValue('');
+    this.gmField.setValue('');
   }
 
   checkForTeam() {
@@ -112,8 +108,13 @@ export class TeamComponent {
   }
 
   submitTeam() {
+    if (this.codeField.getRawValue()?.length != 3) {
+      return;
+    }
+    if (Array.from(this.teamMap.values()).includes(this.codeField.getRawValue()!)){
+      return;
+    }
     let data = {
-      "id":this.idField.getRawValue()!,
       "code":this.codeField.getRawValue(),
       "name":this.teamField.getRawValue(),
       "coach":this.coachField.getRawValue(),
@@ -123,17 +124,11 @@ export class TeamComponent {
       "owner":this.ownField.getRawValue(),
       "gm":this.gmField.getRawValue(),
     }
-    this.socketService.sendMessageWithID('putTeam', data.id, JSON.stringify(data));
+    this.socketService.sendMessage('postTeam', JSON.stringify(data));
     this.router.navigate(['/teams']);
   }
 
   cancel() {
-    this.router.navigate(['/teams']);
-  }
-
-  delete() {
-    const id = this.idField.getRawValue()!;
-    this.socketService.sendMessage('deleteTeam', id);
     this.router.navigate(['/teams']);
   }
 }

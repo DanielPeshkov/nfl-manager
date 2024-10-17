@@ -1,14 +1,14 @@
 drop table if exists team;
 create table team (
 	id serial primary key,
-	code char(3) not null,
-	name varchar(45) not null,
-	coach varchar(45) not null,
-	off_coord varchar(45) not null,
-	def_coord varchar(45) not null,
-	stadium varchar(45) not null,
-	owner varchar(45) not null,
-	gm varchar(45) not null
+	code char(3),
+	name varchar(45),
+	coach varchar(45),
+	off_coord varchar(45),
+	def_coord varchar(45),
+	stadium varchar(45),
+	owner varchar(45),
+	gm varchar(45)
 );
 
 insert into team(code, name, coach, off_coord, def_coord, stadium, owner, gm) values
@@ -48,9 +48,9 @@ insert into team(code, name, coach, off_coord, def_coord, stadium, owner, gm) va
 drop table if exists player;
 create table player (
 	id serial primary key,
-	code char(3) not null,
-	team varchar(45) not null,
-	player varchar(45) not null,
+	code char(3),
+	team varchar(45),
+	player varchar(45),
 	num int,
 	pos varchar(5),
 	age int,

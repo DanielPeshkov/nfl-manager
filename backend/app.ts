@@ -1,11 +1,15 @@
 import express from "express"
-import { myDataSource } from "./app-data-source"
+// const express = require('express');
+import { myDataSource } from "./app-data-source.js"
+// const myDataSource = require('./app-data-source');
 import * as http from 'http'
 import { Server } from "socket.io"
 
 const port = process.env['PORT'] || 8080;
-const teamEvents = require('./event-handlers/team-events');
-const playerEvents = require('./event-handlers/player-events')
+// const teamEvents = require('./event-handlers/team-events');
+import {teamEvents} from './event-handlers/team-events.js'
+// const playerEvents = require('./event-handlers/player-events')
+import { playerEvents } from "./event-handlers/player-events.js";
 
 // establish database connection
 myDataSource
@@ -13,7 +17,7 @@ myDataSource
     .then(() => {
         console.log("Data Source has been initialized!")
     })
-    .catch((err) => {
+    .catch((err: any) => {
         console.error("Error during Data Source initialization:", err)
 });
 

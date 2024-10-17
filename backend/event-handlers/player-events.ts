@@ -1,5 +1,5 @@
-import { Player } from "../models/player"
-import { myDataSource } from "../app-data-source"
+import { Player } from "../models/player.js"
+import { myDataSource } from "../app-data-source.js"
 import { Socket } from "socket.io-client"
 import { Server } from "socket.io"
 
@@ -32,7 +32,8 @@ interface SocketData {
     age: number;
 }
 
-module.exports = async (socket: Socket<ServerToClientEvents, ClientToServerEvents>, io: Server<
+// Socket<ServerToClientEvents, ClientToServerEvents>
+export const playerEvents = async (socket: any, io: Server<
     ClientToServerEvents,
     ServerToClientEvents,
     InterServerEvents,
@@ -43,7 +44,7 @@ module.exports = async (socket: Socket<ServerToClientEvents, ClientToServerEvent
         socket.emit('getPlayers', players);
     });
 
-    socket.on('getPlayer', async (data) => {
+    socket.on('getPlayer', async (data: string) => {
         const id = parseInt(data);
         if (isNaN(id)) {
             socket.emit('getPlayer', {'error':'Invalid Player ID'});
@@ -60,7 +61,7 @@ module.exports = async (socket: Socket<ServerToClientEvents, ClientToServerEvent
         socket.emit('getPlayer', {'error':`Player with id ${id} not found`});
     });
 
-    socket.on('postPlayer', async (data) => {
+    socket.on('postPlayer', async (data: string) => {
         let playerData;
         try {
             if (typeof data == "string") {
@@ -84,7 +85,7 @@ module.exports = async (socket: Socket<ServerToClientEvents, ClientToServerEvent
         }
     });
 
-    socket.on('putPlayer', async (putId, data) => {
+    socket.on('putPlayer', async (putId: string, data: string) => {
         const id = parseInt(putId);
         if (isNaN(id)) {
             socket.emit('putPlayer', {'error':'Invalid Player ID'});
@@ -109,16 +110,16 @@ module.exports = async (socket: Socket<ServerToClientEvents, ClientToServerEvent
             return;
         }
         myDataSource.getRepository(Player).merge(player, playerData);
-        const results = await myDataSource.getRepository(Player).save(player)
+        const results = await myDataSource.getRepository(Player).update({id: player.id}, player)
                                 .catch((err) => {
                                     socket.emit('putPlayer', {'error':'putPlayer operation failed'});
                                 });
-        if (results) {
-            io.emit('putPlayer', putId, results);
+        if (results!.generatedMaps.length > 0) {
+            io.emit('putPlayer', putId, JSON.stringify(results!.generatedMaps[0]));
         }
     });
 
-    socket.on('deletePlayer', async (data) => {
+    socket.on('deletePlayer', async (data: string) => {
         let id = NaN;
         if (typeof data == "string") {
             id = parseInt(data);

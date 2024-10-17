@@ -6,25 +6,16 @@
     <div class="content">
 
         <div class="form-container">
-            <h1>{{team.name}}</h1>
+            <h1>Create New Team</h1>
         <form>
-            <div class="form-element">
-                <label>ID</label><br>
-                <input type="text" placeholder="ID" [formControl]="idField">
-            </div>
 
             <div class="form-element">
                 <label>Team Code</label><br>
-                <input type="text" placeholder="Code" [formControl]="codeField">
+                <input type="text" maxlength="3" required placeholder="Code" [formControl]="codeField">
             </div>
 
             <div class="form-element">
                 <label>Team Name</label><br>
-                <!-- <select [formControl]="teamField" (change)="changeCode()">
-                @for (team of teamMap; track $index;) {
-                    <option value="{{team[0]}}">{{team[0]}}</option>
-                }
-                </select> -->
                 <input type="text" placeholder="Team" [formControl]="teamField">
             </div>
 
@@ -66,9 +57,6 @@
     <div class="buttons">
         <button type="button" (click)="submitTeam()">Save Changes</button>
         <button type="button" (click)="cancel()">Cancel</button>
-    </div>
-    <div class="buttons">
-        <button type="button" (click)="delete()">Delete</button>
     </div>
     </div>
 </main>
